@@ -1,6 +1,6 @@
 {
   "name": "image-crop-generator",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Crop your images after uploading them to the server.",
   "main": "src/cropped.tsx",
   "repository": "https://github.com/lejoaoconte/image-crop-generator",
@@ -10,9 +10,7 @@
     "dist/cropped.js",
     "dist/cropped.d.ts",
     "dist/package.json",
-    "dist/README.md",
-    "!src/*",
-    "!src"
+    "dist/README.md"
   ],
   "publishConfig": {
     "access": "public"
