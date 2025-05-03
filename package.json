@@ -1,13 +1,16 @@
 {
   "name": "image-crop-generator",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Crop your images after uploading them to the server.",
   "main": "src/cropped.tsx",
   "repository": "https://github.com/lejoaoconte/image-crop-generator",
   "author": "João Pedro Conte",
   "license": "MIT",
   "files": [
-    "dist"
+    "cropped.js",
+    "cropped.d.ts",
+    "package.json",
+    "README.md"
   ],
   "keywords": [
     "cropped",
@@ -19,7 +22,7 @@
     "clean": "rm -rf dist .cache src/bundle",
     "start": "yarn clean && tsc --outDir src/bundle; parcel src/index.html",
     "build": "yarn clean && tsc && cp package.json README.md ./dist",
-    "publicate": "npm publish ./dist"
+    "publicate": "npm publish --access public"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
