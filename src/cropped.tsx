@@ -1,11 +1,11 @@
-import { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 type CroppedType = {
   image: HTMLImageElement | null;
   getImageCropped: (image: HTMLImageElement | null) => void;
 };
 
-export const Cropped = ({ getImageCropped, image }: CroppedType) => {
+export function Cropped({ getImageCropped, image }: CroppedType) {
   const [cropBorder, setCropBorder] = useState({
     x1: 0,
     x2: 0,
@@ -133,4 +133,4 @@ export const Cropped = ({ getImageCropped, image }: CroppedType) => {
       )}
     </div>
   );
-};
+}

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { Cropped } from "./components/Cropped";
+import { Cropped } from "./cropped";
 
-function App() {
+export function App() {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
   const [croppedImage, setCroppedImage] = useState<HTMLImageElement | null>(
     null
@@ -43,4 +43,3 @@ function App() {
     </div>
   );
 }
-export default App;
