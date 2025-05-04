@@ -27,7 +27,7 @@
     "clean": "rm -rf dist .cache src/bundle",
     "start": "yarn clean && tsc --outDir src/bundle; parcel src/index.html",
     "build": "yarn clean && tsc",
-    "publicate": "cp ./dist/cropped.js . && cp ./dist/cropped.d.ts . && mv cropped.js index.js && mv cropped.d.ts index.d.ts &&  npm publish --access public && rm -rf index.js && rm -rf index.d.ts"
+    "publicate": "cp ./dist/cropped.js . && cp ./dist/cropped.d.ts . && mv cropped.js index.js && mv cropped.d.ts index.d.ts &&  npm publish --access public && rm index.js && rm index.d.ts"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

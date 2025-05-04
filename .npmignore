@@ -4,7 +4,15 @@ src/bundle
 dist/index.html
 dist/index.js
 dist/index.d.ts
+dist/App.js
+dist/App.d.ts
 src/App.tsx
 src/index.tsx
-src/Cropper.js
+src/cropped.tsx
 src/index.html
+*/cropped.tsx
+*/cropped.*
+src/*
+../src/*
+src
+../src
