@@ -1,6 +1,6 @@
 {
   "name": "image-crop-generator",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Crop your images after uploading them to the server.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -27,7 +27,7 @@
     "clean": "rm -rf dist .cache src/bundle",
     "start": "yarn clean && tsc --outDir src/bundle; parcel src/index.html",
     "build": "yarn clean && tsc",
-    "publicate": "cp ./dist/cropped.js . && cp ./dist/cropped.d.ts . && mv cropped.js index.js && mv cropped.d.ts index.d.ts &&  yarn publish && rm index.js && rm index.d.ts"
+    "publicate": "yarn build && cp ./dist/cropped.js . && cp ./dist/cropped.d.ts . && mv cropped.js index.js && mv cropped.d.ts index.d.ts &&  yarn publish && rm index.js && rm index.d.ts"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
