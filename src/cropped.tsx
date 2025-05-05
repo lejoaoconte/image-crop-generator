@@ -8,14 +8,14 @@ type CroppedType = {
 export function Cropped({ getImageCropped, image }: CroppedType) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [cropBorder, setCropBorder] = useState({
-    x1: 0,
-    x2: 0,
-    y1: 0,
-    y2: 0,
+    startX: 0,
+    endX: 0,
+    startY: 0,
+    endY: 0,
   });
 
   const cropImage = useCallback(
-    (x1: number, y1: number, x2: number, y2: number) => {
+    (startX: number, startY: number, endX: number, endY: number) => {
       if (image) {
         const img = new Image();
         img.src = image.src;
@@ -23,14 +23,14 @@ export function Cropped({ getImageCropped, image }: CroppedType) {
           const canvas = document.createElement("canvas");
           const ctx = canvas.getContext("2d");
           if (!ctx) return null;
-          const croppedWidth = x2 - x1;
-          const croppedHeight = y2 - y1;
+          const croppedWidth = endX - startX;
+          const croppedHeight = endY - startY;
           canvas.width = croppedWidth;
           canvas.height = croppedHeight;
           ctx.drawImage(
             image,
-            x1,
-            y1,
+            startX,
+            startY,
             croppedWidth,
             croppedHeight,
             0,
@@ -56,14 +56,28 @@ export function Cropped({ getImageCropped, image }: CroppedType) {
 
       const rect = containerRef.current.getBoundingClientRect();
 
-      const x1 = e.clientX - rect.left;
-      const y1 = e.clientY - rect.top;
+      let startX = e.clientX - rect.left;
+      let startY = e.clientY - rect.top;
 
       const handleMouseMove = (e: MouseEvent) => {
-        const x2 = e.clientX - rect.left;
-        const y2 = e.clientY - rect.top;
-        setCropBorder({ x1, x2, y1, y2 });
-        cropImage(x1, y1, x2, y2);
+        let endX = e.clientX - rect.left;
+        let endY = e.clientY - rect.top;
+
+        if (startX < 0) {
+          startX = 0;
+        }
+        if (startY < 0) {
+          startY = 0;
+        }
+        if (image && endX > image.width) {
+          endX = image.width;
+        }
+        if (image && endY > image.height) {
+          endY = image.height;
+        }
+
+        setCropBorder({ startX, endX, startY, endY });
+        cropImage(startX, startY, endX, endY);
       };
 
       const handleMouseUp = (e: MouseEvent) => {
@@ -85,14 +99,28 @@ export function Cropped({ getImageCropped, image }: CroppedType) {
 
       const rect = containerRef.current.getBoundingClientRect();
 
-      const x1 = cropBorder.x1;
-      const y1 = cropBorder.y1;
+      let startX = cropBorder.startX;
+      let startY = cropBorder.startY;
 
       const handleMouseMove = (e: MouseEvent) => {
-        const x2 = e.clientX - rect.left;
-        const y2 = e.clientY - rect.top;
-        setCropBorder({ x1, x2, y1, y2 });
-        cropImage(x1, y1, x2, y2);
+        let endX = e.clientX - rect.left;
+        let endY = e.clientY - rect.top;
+
+        if (startX < 0) {
+          startX = 0;
+        }
+        if (startY < 0) {
+          startY = 0;
+        }
+        if (image && endX > image.width) {
+          endX = image.width;
+        }
+        if (image && endY > image.height) {
+          endY = image.height;
+        }
+
+        setCropBorder({ startX, endX, startY, endY });
+        cropImage(startX, startY, endX, endY);
       };
 
       const handleMouseUp = (e: MouseEvent) => {
@@ -114,14 +142,27 @@ export function Cropped({ getImageCropped, image }: CroppedType) {
 
       const rect = containerRef.current.getBoundingClientRect();
 
-      const x2 = cropBorder.x2;
-      const y2 = cropBorder.y2;
+      let endX = cropBorder.endX;
+      let endY = cropBorder.endY;
 
       const handleMouseMove = (e: MouseEvent) => {
-        const x1 = e.clientX - rect.left;
-        const y1 = e.clientY - rect.top;
-        setCropBorder({ x1, x2, y1, y2 });
-        cropImage(x1, y1, x2, y2);
+        let startX = e.clientX - rect.left;
+        let startY = e.clientY - rect.top;
+        if (startX < 0) {
+          startX = 0;
+        }
+        if (startY < 0) {
+          startY = 0;
+        }
+        if (image && endX > image.width) {
+          endX = image.width;
+        }
+        if (image && endY > image.height) {
+          endY = image.height;
+        }
+
+        setCropBorder({ startX, endX, startY, endY });
+        cropImage(startX, startY, endX, endY);
       };
 
       const handleMouseUp = (e: MouseEvent) => {
@@ -156,15 +197,15 @@ export function Cropped({ getImageCropped, image }: CroppedType) {
             overflow: "hidden",
           }}
         >
-          {cropBorder.x2 > cropBorder.x1 && (
+          {cropBorder.endX > cropBorder.startX && (
             <>
               <div
                 style={{
                   position: "absolute",
-                  left: cropBorder.x1,
-                  top: cropBorder.y1,
-                  width: cropBorder.x2 - cropBorder.x1,
-                  height: cropBorder.y2 - cropBorder.y1,
+                  left: cropBorder.startX,
+                  top: cropBorder.startY,
+                  width: cropBorder.endX - cropBorder.startX,
+                  height: cropBorder.endY - cropBorder.startY,
                   border: "1px dashed gray",
                   backgroundColor: "rgba(255,255,255,0.3)",
                   pointerEvents: "none",
@@ -177,8 +218,8 @@ export function Cropped({ getImageCropped, image }: CroppedType) {
                   backgroundColor: "rgba(255,255,255,0.5)",
                   borderRadius: "50%",
                   position: "absolute",
-                  left: cropBorder.x1 - 5,
-                  top: cropBorder.y1 - 5,
+                  left: cropBorder.startX - 5,
+                  top: cropBorder.startY - 5,
                   cursor: "nwse-resize",
                 }}
                 onMouseDown={onMouseDownTopLeft}
@@ -190,8 +231,8 @@ export function Cropped({ getImageCropped, image }: CroppedType) {
                   backgroundColor: "rgba(255,255,255,0.5)",
                   borderRadius: "50%",
                   position: "absolute",
-                  left: cropBorder.x2 - 5,
-                  top: cropBorder.y2 - 5,
+                  left: cropBorder.endX - 5,
+                  top: cropBorder.endY - 5,
                   cursor: "nwse-resize",
                 }}
                 onMouseDown={onMouseDownBottonRight}

@@ -31,7 +31,7 @@ export function App() {
           setCroppedImage(img);
         }}
       />
-      {/* {croppedImage && (
+      {croppedImage && (
         <div>
           <img
             src={croppedImage.src}
@@ -39,7 +39,7 @@ export function App() {
             style={{ width: croppedImage.width, height: croppedImage.height }}
           />
         </div>
-      )} */}
+      )}
     </div>
   );
 }
