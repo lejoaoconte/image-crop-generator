@@ -6,6 +6,7 @@ export function App() {
   const [croppedImage, setCroppedImage] = useState<HTMLImageElement | null>(
     null
   );
+  const [rotate, setRotate] = useState(0);
 
   const handleSetImage = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,11 +26,21 @@ export function App() {
   return (
     <div>
       <input type="file" onChange={(e) => handleSetImage(e)} />
+      <input
+        max={360}
+        type="range"
+        onChange={(e) => {
+          const value = parseInt(e.target.value);
+          setRotate(value);
+        }}
+        value={rotate}
+      />
       <Cropped
         image={image}
         getImageCropped={(img) => {
           setCroppedImage(img);
         }}
+        rotate={rotate}
       />
       {croppedImage && (
         <div>
