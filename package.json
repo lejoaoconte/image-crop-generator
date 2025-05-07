@@ -1,6 +1,6 @@
 {
   "name": "@lejoaoconte/image-crop-generator",
-  "version": "2.0.5",
+  "version": "2.0.7",
   "description": "Crop your images after uploading them to the server.",
   "main": "index.js",
   "types": "index.d.ts",
