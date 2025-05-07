@@ -4,7 +4,14 @@
   "description": "Crop your images after uploading them to the server.",
   "main": "index.js",
   "types": "index.d.ts",
-  "repository": "https://github.com/lejoaoconte/image-crop-generator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lejoaoconte/image-crop-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lejoaoconte/image-crop-generator/issues"
+  },
+  "homepage": "https://github.com/lejoaoconte/image-crop-generator#readme",
   "author": "João Pedro Conte",
   "license": "MIT",
   "files": [
