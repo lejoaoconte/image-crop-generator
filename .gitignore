@@ -5,3 +5,4 @@ dist
 src/bundle
 yarn-error.log
 src/cropped.js
+.npmrc
