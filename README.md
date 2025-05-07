@@ -1,4 +1,5 @@
-![image info](./image/5854072_arts_cut_cutting_education_school_icon.svg){width=50px}
+<img src="./image/5854072_arts_cut_cutting_education_school_icon.svg" width="70px" />
+
 # Image Crop Generator
 
 Your complete solution to crop and rotate your image before upload to backend.
