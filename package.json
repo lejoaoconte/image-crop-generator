@@ -1,6 +1,6 @@
 {
   "name": "image-crop-generator",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Crop your images after uploading them to the server.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -21,8 +21,7 @@
     "README.md"
   ],
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "publisher": "lejoaoconte",
   "keywords": [
