@@ -1,4 +1,4 @@
-<img src="./image/5854072_arts_cut_cutting_education_school_icon.svg" width="70px" />
+<img src="https://raw.githubusercontent.com/lejoaoconte/image-crop-generator/main/image/5854072_arts_cut_cutting_education_school_icon.svg" width="70px" />
 
 # Image Crop Generator
 
